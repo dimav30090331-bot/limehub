@@ -8,7 +8,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
         
-        /* Киберпанк фон с лаймовым свечением */
         body { 
             background-color: #06080a; 
             color: #ffffff; 
@@ -48,33 +47,28 @@
             letter-spacing: 2px; 
         }
 
-        /* Контейнер маскота с эффектом молний */
-        .avatar-container { position: relative; width: 200px; height: 200px; margin: 15px 0; z-index: 2; }
-        .avatar-glow { 
-            position: absolute; 
-            width: 100%; height: 100%; 
-            border-radius: 50%; 
-            background: radial-gradient(circle, rgba(0, 255, 102, 0.5) 0%, transparent 70%); 
-            z-index: 1; 
-            animation: pulse 2s infinite alternate ease-in-out; 
-        }
-        .avatar-img { 
-            position: absolute; 
-            width: 100%; height: 100%; 
-            border-radius: 50%; 
-            border: 3px solid #00ff66; 
-            box-shadow: 0 0 15px #00ff66, inset 0 0 15px #00ff66, 0 0 30px rgba(0, 255, 102, 0.8); 
+        /* Стильный лаймовый текстовый логотип вместо картинки */
+        .logo-container { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 40px 0; 
             z-index: 2; 
-            object-fit: cover; 
-            background-color: #111; 
-            animation: lightning 4s infinite steps(1);
+        }
+        .lime-text-logo {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 36px;
+            font-weight: 900;
+            color: #00ff66;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px #00ff66, 0 0 30px rgba(0, 255, 102, 0.5);
+            animation: pulse 2s infinite alternate ease-in-out;
         }
 
-        @keyframes pulse { 0% { transform: scale(0.93); opacity: 0.5; } 100% { transform: scale(1.07); opacity: 1; } }
-        @keyframes lightning { 0%, 95%, 98% { filter: drop-shadow(0 0 10px #00ff66) brightness(1); } 96%, 99% { filter: drop-shadow(0 0 25px #00ff66) brightness(1.4); } }
+        @keyframes pulse { 0% { opacity: 0.6; transform: scale(0.97); } 100% { opacity: 1; transform: scale(1.03); } }
 
-        /* Яркие лаймовые кибер-кнопки */
-        .menu-container { width: 100%; display: flex; flex-direction: column; gap: 18px; margin-bottom: 15px; z-index: 2; }
+        .menu-container { width: 100%; display: flex; flex-direction: column; gap: 18px; margin-bottom: 20px; z-index: 2; }
         .btn { 
             width: 100%; 
             background: linear-gradient(135deg, #0f141c 0%, #07090d 100%); 
@@ -90,21 +84,20 @@
             justify-content: space-between; 
             cursor: pointer; 
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2), inset 0 0 10px rgba(0, 255, 102, 0.05); 
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2); 
             text-decoration: none; 
             -webkit-tap-highlight-color: transparent; 
         }
         .btn:active { 
             transform: scale(0.96); 
             background: linear-gradient(135deg, #131a24 0%, #0b0f14 100%);
-            box-shadow: 0 0 25px #00ff66, inset 0 0 15px rgba(0, 255, 102, 0.3); 
+            box-shadow: 0 0 25px #00ff66; 
         }
         .btn-text { display: flex; flex-direction: column; }
-        .btn-title { font-size: 18px; color: #ffffff; text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
-        .btn-subtitle { font-size: 11px; color: #a6adc8; margin-top: 4px; font-weight: 400; letter-spacing: 0.3px; }
+        .btn-title { font-size: 18px; color: #ffffff; }
+        .btn-subtitle { font-size: 11px; color: #a6adc8; margin-top: 4px; font-weight: 400; }
         .btn-icon { font-size: 22px; color: #00ff66; text-shadow: 0 0 10px #00ff66; }
         
-        /* Ультра-светящийся лаймовый подвал */
         .footer-terminal { 
             display: flex; 
             flex-direction: column; 
@@ -114,18 +107,17 @@
             font-size: 13px; 
             font-weight: 900; 
             color: #00ff66; 
-            text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66, 0 0 30px rgba(0, 255, 102, 0.5); 
+            text-shadow: 0 0 10px #00ff66, 0 0 20px #00ff66; 
             text-align: center; 
             margin-bottom: 5px; 
             z-index: 2; 
-            letter-spacing: 0.5px;
         }
         .status-container { display: flex; align-items: center; gap: 7px; }
         .status-dot { 
             width: 8px; height: 8px; 
             background-color: #00ff66; 
             border-radius: 50%; 
-            box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66; 
+            box-shadow: 0 0 12px #00ff66; 
             animation: blink 1.2s infinite; 
         }
         @keyframes blink { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
@@ -136,10 +128,12 @@
         <h1>LIME HUB</h1>
         <p>Система управления терминалом</p>
     </div>
-    <div class="avatar-container">
-        <div class="avatar-glow"></div>
-        <img class="avatar-img" src="character.png" alt="LIME Маскот">
+
+    <!-- Текстовый неоновый маскот -->
+    <div class="logo-container">
+        <div class="lime-text-logo">[ LIME ]</div>
     </div>
+
     <div class="menu-container">
         <a href="https://t.me" class="btn" target="_blank">
             <div class="btn-text">
@@ -173,3 +167,4 @@
     </script>
 </body>
 </html>
+
